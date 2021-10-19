@@ -1,4 +1,4 @@
-// const endpoint = 'memories_history.json';
+const endpoint = 'memories_history.json';
 const links = document.querySelector('.links');
 const btn = document.getElementById('btn')
 const files = document.getElementById('files')
