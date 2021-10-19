@@ -4,6 +4,10 @@ const btn = document.getElementById('btn')
 const files = document.getElementById('files')
 const remaining = document.getElementById('remaining')
 
+if (!('fetch' in window)) {
+    console.log('Fetch API not found, try including the polyfill');
+  }
+
 function downloadMemories(url) {
     var parts = url.split("?");
     var xhttp = new XMLHttpRequest();
@@ -68,7 +72,7 @@ async function run() {
         setTimeout(
             function(){
                  console.log(element)
-                //  element.click()
+                element.click()
                 remaining.innerHTML = `Total downloaded: ${i + 1}`
             }
         , i * 1200);
