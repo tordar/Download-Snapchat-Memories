@@ -1,7 +1,25 @@
 const endpoint = 'memories_history.json';
 const albumName = [];
-const albumsOutput = document.querySelector('.albums');
+const links = document.querySelector('.albums');
 
+
+function downloadMemories(url) {
+    var parts = url.split("?");
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("POST", parts[0], true);
+    xhttp.onreadystatechange = function(){
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
+            var a = document.createElement("a");
+            a.href = xhttp.responseText;
+            a.style.display = "none";
+            document.body.appendChild(a);
+            a.click();} 
+                else if (xhttp.readyState == 4 && xhttp.status >= 400) {
+                    document.getElementById("mem-info-bar").innerText = "Oops! Something went wrong. Status " + xhttp.status}
+                };
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp.send(parts[1]);
+            }
 
 async function fetchMemories() {
     const response = await fetch(endpoint);
@@ -16,10 +34,33 @@ async function fetchMemories() {
     
     for(let i = 0; i<arr.length; i++){
         let hey = Object.entries(arr[i])
-        let x = document.createElement("div");
-        x.classList.add('card')
-        x.innerHTML = `${hey[2][1]}`
-        albumsOutput.appendChild(x)
+        let x = document.createElement("a");
+        x.setAttribute('download', `memory${i}`);
+        x.setAttribute('id', `memory${i}`);
+        x.href = `javascript:downloadMemories('${hey[2][1]}')`
+        x.innerHTML = `Download link ${[i]}`
+        links.appendChild(x)
     }
 }
 fetchMemories()
+
+
+function clicker(i){
+        // console.log(i)
+        let y = document.getElementById(`memory${i}`)
+        console.log(y)
+            // y.click()
+}
+
+
+function doSetTimeout(i) {
+    
+    setInterval(function() { 
+        clicker(i); 
+    }, 1000);
+  
+  
+}
+for (let i = 0; i < 4; i++){
+    doSetTimeout(i);
+}
