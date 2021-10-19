@@ -1,7 +1,7 @@
 const endpoint = 'memories_history.json';
 const albumName = [];
 const links = document.querySelector('.albums');
-
+const btn = document.getElementById('btn')
 
 function downloadMemories(url) {
     var parts = url.split("?");
@@ -30,7 +30,6 @@ async function fetchMemories() {
     const arrayProps = properties[0][1]
     console.log(arrayProps)
     const arr = Object.values(arrayProps)
-    console.log(Object.entries(arr[1]))
     
     for(let i = 0; i<arr.length; i++){
         let hey = Object.entries(arr[i])
@@ -38,29 +37,35 @@ async function fetchMemories() {
         x.setAttribute('download', `memory${i}`);
         x.setAttribute('id', `memory${i}`);
         x.href = `javascript:downloadMemories('${hey[2][1]}')`
-        x.innerHTML = `Download link ${[i]}`
+        x.innerHTML = `Download link ${[i + 1]}`
         links.appendChild(x)
     }
 }
 fetchMemories()
 
 
-function clicker(i){
-        // console.log(i)
+let arr = []
+async function test() {
+    console.log('start timer');
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    for(let i = 0; i < 5; i++) {
         let y = document.getElementById(`memory${i}`)
-        console.log(y)
-            // y.click()
-}
-
-
-function doSetTimeout(i) {
+        arr.push(y)
+    }
+    arr.forEach((element, i) => {
+        setTimeout(
+            function(){
+                 console.log(element)
+                 element.click()
+            }
+        , i * 2000);
+    });
+    console.log('after 1 second');
     
-    setInterval(function() { 
-        clicker(i); 
-    }, 1000);
+  }
   
-  
-}
-for (let i = 0; i < 4; i++){
-    doSetTimeout(i);
-}
+//   test();
+
+btn.addEventListener('click', () => {
+    test()
+})
