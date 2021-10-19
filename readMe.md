@@ -1,4 +1,4 @@
-## Snapchat memory downloader
+## Snapchat memory downloader 👻
 
 **Motivations behind this projects**
 

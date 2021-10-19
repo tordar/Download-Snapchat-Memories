@@ -1,6 +1,8 @@
 const endpoint = 'memories_history.json';
 const links = document.querySelector('.links');
 const btn = document.getElementById('btn')
+const files = document.getElementById('files')
+const remaining = document.getElementById('remaining')
 
 function downloadMemories(url) {
     var parts = url.split("?");
@@ -42,12 +44,14 @@ async function fetchMemories() {
         x.innerHTML = `Download link ${[i + 1]}`
         links.appendChild(x)
     }
+    files.innerHTML = `Total memories: ${arrLength.length}`
 }
 fetchMemories()
 
 
-let arr = []
-async function test() {
+
+async function run() {
+    let arr = []
     console.log('start timer');
     await new Promise(resolve => setTimeout(resolve, 1000));
     console.log(arr.length)
@@ -59,13 +63,14 @@ async function test() {
         setTimeout(
             function(){
                  console.log(element)
-                 element.click()
+                //  element.click()
+                remaining.innerHTML = `Total downloaded: ${i + 1}`
             }
-        , i * 3000);
+        , i * 1200);
     });
     console.log('after 1 second');
   }
   
 btn.addEventListener('click', () => {
-    test()
+    run()
 })
