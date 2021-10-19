@@ -1,6 +1,5 @@
 const endpoint = 'memories_history.json';
-const albumName = [];
-const links = document.querySelector('.albums');
+const links = document.querySelector('.links');
 const btn = document.getElementById('btn')
 
 function downloadMemories(url) {
@@ -21,6 +20,8 @@ function downloadMemories(url) {
                 xhttp.send(parts[1]);
             }
 
+let arrLength = []
+
 async function fetchMemories() {
     const response = await fetch(endpoint);
     // waits until the request completes...
@@ -33,6 +34,7 @@ async function fetchMemories() {
     
     for(let i = 0; i<arr.length; i++){
         let hey = Object.entries(arr[i])
+        arrLength.push(arr[i])
         let x = document.createElement("a");
         x.setAttribute('download', `memory${i}`);
         x.setAttribute('id', `memory${i}`);
@@ -48,7 +50,8 @@ let arr = []
 async function test() {
     console.log('start timer');
     await new Promise(resolve => setTimeout(resolve, 1000));
-    for(let i = 0; i < 5; i++) {
+    console.log(arr.length)
+    for(let i = 0; i < arrLength.length; i++) {
         let y = document.getElementById(`memory${i}`)
         arr.push(y)
     }
@@ -58,14 +61,11 @@ async function test() {
                  console.log(element)
                  element.click()
             }
-        , i * 2000);
+        , i * 3000);
     });
     console.log('after 1 second');
-    
   }
   
-//   test();
-
 btn.addEventListener('click', () => {
     test()
 })
