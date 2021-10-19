@@ -8,7 +8,7 @@ In wanting to back up all my data on my hard drive I also wanted to preserve all
 
  - Fork this project
  - Go to https://accounts.snapchat.com/ and log in
- - Under "My Data", click "Submit a request" to recieve a download link (this data will only be available for 7 days)
+ - Under "My Data", click "Submit request" to recieve a download link (this data will only be available for 7 days)
  - In the folder you receive go to json > memories_history.json
  - Place that file into the directory of this project
  - Open up the index.html file in your browser

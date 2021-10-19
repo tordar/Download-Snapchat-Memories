@@ -25,26 +25,31 @@ function downloadMemories(url) {
 let arrLength = []
 
 async function fetchMemories() {
-    const response = await fetch(endpoint);
-    // waits until the request completes...
-    const newJson = await response.json()
-    console.log(newJson);
-    const properties = Object.entries(newJson)
-    const arrayProps = properties[0][1]
-    console.log(arrayProps)
-    const arr = Object.values(arrayProps)
-    
-    for(let i = 0; i<arr.length; i++){
-        let hey = Object.entries(arr[i])
-        arrLength.push(arr[i])
-        let x = document.createElement("a");
-        x.setAttribute('download', `memory${i}`);
-        x.setAttribute('id', `memory${i}`);
-        x.href = `javascript:downloadMemories('${hey[2][1]}')`
-        x.innerHTML = `Download link ${[i + 1]}`
-        links.appendChild(x)
+    try{
+        const response = await fetch(endpoint);
+        // waits until the request completes...
+        const newJson = await response.json()
+        console.log(newJson);
+        const properties = Object.entries(newJson)
+        const arrayProps = properties[0][1]
+        console.log(arrayProps)
+        const arr = Object.values(arrayProps)
+        
+        for(let i = 0; i<arr.length; i++){
+            let hey = Object.entries(arr[i])
+            arrLength.push(arr[i])
+            let x = document.createElement("a");
+            x.setAttribute('download', `memory${i}`);
+            x.setAttribute('id', `memory${i}`);
+            x.href = `javascript:downloadMemories('${hey[2][1]}')`
+            x.innerHTML = `Download link ${[i + 1]}`
+            links.appendChild(x)
+        }
+        files.innerHTML = `Total memories: ${arrLength.length}`
     }
-    files.innerHTML = `Total memories: ${arrLength.length}`
+    catch(err){
+        remaining.innerHTML = "It seems like you don't have the right file in the folder. Try to put memories_history.json in the same folder as this file."
+    }
 }
 fetchMemories()
 
