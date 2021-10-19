@@ -1,4 +1,4 @@
-const endpoint = 'memories_history.json';
+// const endpoint = 'memories_history.json';
 const links = document.querySelector('.links');
 const btn = document.getElementById('btn')
 const files = document.getElementById('files')
@@ -25,7 +25,6 @@ function downloadMemories(url) {
                 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 xhttp.send(parts[1]);
             }
-
 let arrLength = []
 
 async function fetchMemories() {
@@ -52,6 +51,7 @@ async function fetchMemories() {
         files.innerHTML = `Total memories: ${arrLength.length}`
     }
     catch(err){
+        btn.style.cursor = 'not-allowed'
         remaining.innerHTML = "It seems like you don't have the right file in the folder. Try to put memories_history.json in the same folder as this file."
     }
 }
@@ -71,7 +71,7 @@ async function run() {
     arr.forEach((element, i) => {
         setTimeout(
             function(){
-                 console.log(element)
+                console.log(element)
                 element.click()
                 remaining.innerHTML = `Total downloaded: ${i + 1}`
             }

@@ -15,6 +15,7 @@ button{
     background-color: white;
     border: 0px;
     margin-bottom: 40px;
+    cursor:pointer;
 }
 
 ul {
