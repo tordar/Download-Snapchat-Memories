@@ -11,6 +11,12 @@ In wanting to back up all my data on my hard drive I also wanted to preserve all
  - Under "My Data", click "Submit request" to recieve a download link (this data will only be available for 7 days)
  - In the folder you receive go to json > memories_history.json
  - Place that file into the directory of this project
- - Open up the index.html file in your browser
+ - Open up the index.html file on a local web server
  - Make sure the browser allows for multiple automatic downloads
  - To abort, simply refresh the site
+
+ **Future updates:**
+ - Download memories in chronological order
+    - Snapchat makes this extra difficult, even though the data includes date stamps
+ - Automatically set up a web browser
+     - Currently, the fetch request doesn't work if you just open the HTML file in the browser

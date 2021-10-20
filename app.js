@@ -4,9 +4,6 @@ const btn = document.getElementById('btn')
 const files = document.getElementById('files')
 const remaining = document.getElementById('remaining')
 
-if (!('fetch' in window)) {
-    console.log('Fetch API not found, try including the polyfill');
-  }
 
 function downloadMemories(url) {
     var parts = url.split("?");
@@ -25,6 +22,7 @@ function downloadMemories(url) {
                 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 xhttp.send(parts[1]);
             }
+
 let arrLength = []
 
 async function fetchMemories() {
@@ -44,8 +42,9 @@ async function fetchMemories() {
             let x = document.createElement("a");
             x.setAttribute('download', `memory${i}`);
             x.setAttribute('id', `memory${i}`);
+            x.setAttribute('class', 'card')
             x.href = `javascript:downloadMemories('${hey[2][1]}')`
-            x.innerHTML = `Download link ${[i + 1]}`
+            x.innerHTML = `Date: ${hey[0][1]}`
             links.appendChild(x)
         }
         files.innerHTML = `Total memories: ${arrLength.length}`
@@ -73,6 +72,7 @@ async function run() {
             function(){
                 console.log(element)
                 element.click()
+                element.setAttribute('class', 'finished')
                 remaining.innerHTML = `Total downloaded: ${i + 1}`
             }
         , i * 1200);

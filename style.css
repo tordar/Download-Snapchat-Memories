@@ -25,15 +25,19 @@ ul {
   }
 
 a {
-    display: inline-block;
     text-decoration: none;
-    padding: 5px;
-    margin: 42px;
-    width: 170px;
+    padding: 10px;
+    margin: 3px;
+    width: 120px;
+}
+
+
+.finished{
+    background-color: rgb(14, 194, 134);
 }
 
 #linkContainer{
     display: grid;
-    grid-template-rows: repeat(auto-fill, minmax(200px, 1fr) );
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr) );
     justify-items: center;
 }
